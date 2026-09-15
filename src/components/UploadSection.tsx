@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Upload, FileText, CheckCircle2, AlertCircle, Play, ArrowRight, Layers, Sparkles, RefreshCw } from 'lucide-react';
+import { Upload, FileText, CheckCircle2, AlertCircle, Play, ArrowRight, Layers, RefreshCw } from 'lucide-react';
 import { MigrationResult } from '../types';
 
 interface UploadSectionProps {
@@ -56,52 +56,18 @@ export const UploadSection: React.FC<UploadSectionProps> = ({
   return (
     <div className="space-y-6">
       {/* Intro Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 border border-slate-800 rounded-xl p-6 text-white shadow-sm">
+      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 text-white shadow-sm">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center space-x-2 px-2.5 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold mb-3 border border-indigo-500/30">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Automated Research Student ETL Pipeline</span>
-          </div>
           <h1 className="text-2xl font-bold tracking-tight text-white mb-2">
             Dual-Format CSV Intake & Centralized Normalization
           </h1>
           <p className="text-sm text-slate-300 leading-relaxed">
-            Upload Federal Work Study (FWS) and Project Supply Grant research CSV files. The pipeline uses
-            <strong className="text-indigo-300"> Python, Pandas &amp; SQLite</strong> to deduplicate students into a centralized
+            Upload Federal Work Study (FWS) and Project Supply Grant research CSV files. This service deduplicates students into a centralized
             <code className="text-xs bg-slate-800 px-1.5 py-0.5 rounded text-indigo-200 ml-1">students_doing_research</code> table,
             and routes remaining application-specific attributes to relational sub-tables linked by a unique Student ID (<code className="text-xs bg-slate-800 px-1 py-0.5 rounded text-emerald-300">STU-XXXX</code>).
           </p>
         </div>
 
-        {/* Quick Demo Action Bar */}
-        <div className="mt-5 pt-4 border-t border-slate-800/80 flex flex-wrap items-center gap-3">
-          <span className="text-xs font-medium text-slate-400">Quick Test with Attached Samples:</span>
-          <button
-            id="quick-batch-btn"
-            onClick={() => onLoadSample('both')}
-            disabled={isProcessing}
-            className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg shadow-sm transition disabled:opacity-50"
-          >
-            <Play className="w-3.5 h-3.5 fill-current" />
-            <span>Load Both Sample CSVs (Full Migration)</span>
-          </button>
-          <button
-            id="quick-fws-btn"
-            onClick={() => onLoadSample('fws')}
-            disabled={isProcessing}
-            className="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg transition disabled:opacity-50"
-          >
-            <span>FWS Sample Only</span>
-          </button>
-          <button
-            id="quick-grant-btn"
-            onClick={() => onLoadSample('grant')}
-            disabled={isProcessing}
-            className="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg transition disabled:opacity-50"
-          >
-            <span>Grant Sample Only</span>
-          </button>
-        </div>
       </div>
 
       {/* Dual Intake Dropzones */}
@@ -118,9 +84,6 @@ export const UploadSection: React.FC<UploadSectionProps> = ({
                 Format 1: FWS
               </span>
             </div>
-            <p className="text-xs text-slate-500 mb-4">
-              Student research assistant applications funded via Federal Work Study. Contains student demographic, legal name, department, and work authorization columns.
-            </p>
 
             <div
               onDragOver={(e) => { e.preventDefault(); setFwsDragOver(true); }}
@@ -162,13 +125,6 @@ export const UploadSection: React.FC<UploadSectionProps> = ({
 
           <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
             <button
-              onClick={() => onLoadSample('fws')}
-              disabled={isProcessing}
-              className="text-xs text-blue-600 hover:text-blue-800 font-medium hover:underline disabled:opacity-50"
-            >
-              Use Attached Sample CSV
-            </button>
-            <button
               id="upload-fws-btn"
               onClick={() => {
                 if (fwsFile) onUpload(fwsFile, 'fws');
@@ -203,9 +159,6 @@ export const UploadSection: React.FC<UploadSectionProps> = ({
                 Format 2: Supply Grant
               </span>
             </div>
-            <p className="text-xs text-slate-500 mb-4">
-              Mentor-submitted undergraduate research project supply grant proposals. Contains lead applicant, co-applicants, research narrative, and faculty mentorship plans.
-            </p>
 
             <div
               onDragOver={(e) => { e.preventDefault(); setGrantDragOver(true); }}
@@ -246,13 +199,6 @@ export const UploadSection: React.FC<UploadSectionProps> = ({
           </div>
 
           <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-            <button
-              onClick={() => onLoadSample('grant')}
-              disabled={isProcessing}
-              className="text-xs text-violet-600 hover:text-violet-800 font-medium hover:underline disabled:opacity-50"
-            >
-              Use Attached Sample CSV
-            </button>
             <button
               id="upload-grant-btn"
               onClick={() => {

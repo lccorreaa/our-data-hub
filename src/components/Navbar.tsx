@@ -1,5 +1,5 @@
 import React from 'react';
-import { Database, Download, RefreshCw, Terminal, FileSpreadsheet } from 'lucide-react';
+import { Database, RefreshCw, FileSpreadsheet } from 'lucide-react';
 import { DatabaseSummary } from '../types';
 
 interface NavbarProps {
@@ -32,7 +32,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                   SQLite 3 Embedded
                 </span>
               </div>
-              <p className="text-xs text-slate-400">Intake & Normalized Relational Database</p>
             </div>
           </div>
 
@@ -51,28 +50,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                 )}
               </div>
             )}
-
-            <a
-              id="download-sqlite-btn"
-              href="/api/download/sqlite"
-              download="research_students.db"
-              className="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-md transition"
-              title="Download embedded SQLite database file (.db)"
-            >
-              <Download className="w-3.5 h-3.5 text-slate-400" />
-              <span className="hidden sm:inline">Export SQLite (.db)</span>
-            </a>
-
-            <a
-              id="download-python-btn"
-              href="/api/download/python-script"
-              download="pipeline.py"
-              className="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-indigo-200 bg-indigo-950/70 hover:bg-indigo-900 border border-indigo-800 rounded-md transition"
-              title="Download standalone Python script"
-            >
-              <Terminal className="w-3.5 h-3.5 text-indigo-400" />
-              <span className="hidden sm:inline">pipeline.py</span>
-            </a>
 
             <button
               id="reset-db-btn"
@@ -147,28 +124,6 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {summary.total_grant_records}
               </span>
             )}
-          </button>
-          <button
-            id="tab-schema"
-            onClick={() => setActiveTab('schema')}
-            className={`px-3 py-1.5 rounded-md text-xs font-medium whitespace-nowrap transition ${
-              activeTab === 'schema'
-                ? 'bg-indigo-600 text-white shadow-sm'
-                : 'text-slate-300 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            Relational Architecture
-          </button>
-          <button
-            id="tab-docs"
-            onClick={() => setActiveTab('docs')}
-            className={`px-3 py-1.5 rounded-md text-xs font-medium whitespace-nowrap transition ${
-              activeTab === 'docs'
-                ? 'bg-indigo-600 text-white shadow-sm'
-                : 'text-slate-300 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            Frameworks & Pipeline Docs
           </button>
         </div>
       </div>

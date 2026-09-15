@@ -3,7 +3,7 @@ build/
 dist/
 coverage/
 data/*.db
-data/*.sqlite
+data/
 .DS_Store
 *.log
 .env*
