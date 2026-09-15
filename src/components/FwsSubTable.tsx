@@ -163,46 +163,47 @@ export const FwsSubTable: React.FC<FwsSubTableProps> = ({
                       </td>
                     </tr>
 
-                    {/* Expandable row showing remaining fields */}
+                    {/* Expandable row showing key fields */}
                     {isExpanded && (
                       <tr className="bg-slate-50/80">
                         <td colSpan={9} className="p-4 border-y border-slate-200">
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                            {/* Research Duties */}
                             <div className="bg-white p-3 rounded-lg border border-slate-200">
-                              <h4 className="font-semibold text-slate-800 mb-1">Research Duties Description</h4>
-                              <p className="text-slate-600 whitespace-pre-line leading-relaxed">
-                                {row.research_duties_description || 'No description provided.'}
-                              </p>
+                              <h4 className="font-semibold text-slate-800 mb-2">Key FWS Details</h4>
+                              <div className="grid grid-cols-2 gap-2 text-[11px]">
+                                <div><span className="text-slate-400">Legal Name: </span><span className="font-medium text-slate-700">{row.legal_first_name || '—'} {row.last_name || ''}</span></div>
+                                <div><span className="text-slate-400">Preferred Name: </span><span className="font-medium text-slate-700">{row.preferred_name || '—'}</span></div>
+                                <div><span className="text-slate-400">Pronouns: </span><span className="font-medium text-slate-700">{row.pronouns || '—'}</span></div>
+                                <div><span className="text-slate-400">Student ID #: </span><span className="font-medium text-slate-700">{row.student_id_number || '—'}</span></div>
+                                <div><span className="text-slate-400">College: </span><span className="font-medium text-slate-700">{row.college || '—'}</span></div>
+                                <div><span className="text-slate-400">Department: </span><span className="font-medium text-slate-700">{row.department || '—'}</span></div>
+                                <div><span className="text-slate-400">Major: </span><span className="font-medium text-slate-700">{row.major || '—'}</span></div>
+                                <div><span className="text-slate-400">Graduation: </span><span className="font-medium text-slate-700">{row.anticipated_graduation || '—'}</span></div>
+                                <div><span className="text-slate-400">Phone: </span><span className="font-medium text-slate-700">{row.phone_number || '—'}</span></div>
+                                <div><span className="text-slate-400">Award Amount: </span><span className="font-medium text-slate-700">{row.award_amount || '—'}</span></div>
+                                <div><span className="text-slate-400">Status: </span><span className="font-medium text-slate-700">{row.approval_status || '—'}</span></div>
+                                <div><span className="text-slate-400">Reviewer: </span><span className="font-medium text-slate-700">{row.reviewer_name || '—'}</span></div>
+                              </div>
                             </div>
 
-                            {/* Additional Attributes Grid */}
-                            <div className="bg-white p-3 rounded-lg border border-slate-200 space-y-2">
-                              <h4 className="font-semibold text-slate-800 mb-1">Application Metadata & Audit</h4>
-                              <div className="grid grid-cols-2 gap-2 text-[11px]">
-                                <div>
-                                  <span className="text-slate-400">Submission Timestamp: </span>
-                                  <span className="font-medium text-slate-700">{row.submission_timestamp || '—'}</span>
-                                </div>
-                                <div>
-                                  <span className="text-slate-400">Reviewer: </span>
-                                  <span className="font-medium text-slate-700">{row.reviewer_name || '—'}</span>
-                                </div>
-                                <div>
-                                  <span className="text-slate-400">Faculty College: </span>
-                                  <span className="font-medium text-slate-700">{row.faculty_mentor_college || '—'}</span>
-                                </div>
-                                <div>
-                                  <span className="text-slate-400">Faculty Phone: </span>
-                                  <span className="font-medium text-slate-700">{row.faculty_mentor_phone || '—'}</span>
-                                </div>
-                                <div>
-                                  <span className="text-slate-400">Voucher Created: </span>
-                                  <span className="font-medium text-slate-700">{row.created_voucher || '—'}</span>
-                                </div>
-                                <div>
-                                  <span className="text-slate-400">Hire Action: </span>
-                                  <span className="font-medium text-slate-700">{row.initiated_hire_action || '—'}</span>
+                            <div className="bg-white p-3 rounded-lg border border-slate-200 space-y-3">
+                              <div>
+                                <h4 className="font-semibold text-slate-800 mb-1">Research Duties</h4>
+                                <p className="text-slate-600 whitespace-pre-line leading-relaxed">
+                                  {row.research_duties_description || 'No description provided.'}
+                                </p>
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-slate-800 mb-1">Mentor & Program Details</h4>
+                                <div className="grid grid-cols-2 gap-2 text-[11px]">
+                                  <div><span className="text-slate-400">Faculty Mentor: </span><span className="font-medium text-slate-700">{row.faculty_mentor_first_name || '—'} {row.faculty_mentor_last_name || ''}</span></div>
+                                  <div><span className="text-slate-400">Faculty College: </span><span className="font-medium text-slate-700">{row.faculty_mentor_college || '—'}</span></div>
+                                  <div><span className="text-slate-400">Faculty Phone: </span><span className="font-medium text-slate-700">{row.faculty_mentor_phone || '—'}</span></div>
+                                  <div><span className="text-slate-400">External Mentor: </span><span className="font-medium text-slate-700">{row.external_mentor_first_name || '—'} {row.external_mentor_last_name || ''}</span></div>
+                                  <div><span className="text-slate-400">Referral Source: </span><span className="font-medium text-slate-700">{row.referral_source || '—'}</span></div>
+                                  <div><span className="text-slate-400">Hire Action: </span><span className="font-medium text-slate-700">{row.initiated_hire_action || '—'}</span></div>
+                                  <div><span className="text-slate-400">Voucher Created: </span><span className="font-medium text-slate-700">{row.created_voucher || '—'}</span></div>
+                                  <div><span className="text-slate-400">FWS Eligible: </span><span className="font-medium text-slate-700">{row.fws_eligible || '—'}</span></div>
                                 </div>
                               </div>
                             </div>

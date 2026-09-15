@@ -802,7 +802,17 @@ class ResearchFundingPipeline:
                 ext_mentor_email = self.clean_str(row.get("External Mentor Email Address") or self.find_val_by_keywords(row, ["external mentor email"]))
                 narrative = self.clean_str(row.get("Describe your research experience with this student") or self.find_val_by_keywords(row, ["research experience with this student", "narrative"]))
                 readiness = self.clean_str(row.get("Evaluate student readiness") or self.find_val_by_keywords(row, ["student readiness", "readiness"]))
-                support_plan = self.clean_str(row.get("Development support plan") or self.find_val_by_keywords(row, ["development support plan", "support plan"]))
+                support_plan = self.clean_str(
+                    row.get("Development support plan")
+                    or row.get("How will you support the development of this student throughout their research project?")
+                    or row.get("How will you support the development of this student throughout their research project?  ")
+                    or self.find_val_by_keywords(row, [
+                        "support the development of this student",
+                        "development support plan",
+                        "support plan",
+                        "how will you support"
+                    ])
+                )
                 add_info = self.clean_str(row.get("Additional Information") or self.find_val_by_keywords(row, ["additional information"]))
                 rec_pref = self.clean_str(row.get("Recommendation Letter Preference") or self.find_val_by_keywords(row, ["recommendation", "letter"]))
 

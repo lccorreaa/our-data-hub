@@ -164,34 +164,52 @@ export const GrantSubTable: React.FC<GrantSubTableProps> = ({
                       </td>
                     </tr>
 
-                    {/* Expandable row for Grant narrative */}
+                    {/* Expandable row for key grant details */}
                     {isExpanded && (
                       <tr className="bg-slate-50/80">
                         <td colSpan={8} className="p-4 border-y border-slate-200">
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                            {/* Research Experience Narrative */}
                             <div className="bg-white p-3 rounded-lg border border-slate-200">
-                              <div className="flex items-center space-x-1.5 font-semibold text-slate-800 mb-1">
-                                <BookOpen className="w-3.5 h-3.5 text-violet-600" />
-                                <h4>Research Experience with Student</h4>
+                              <h4 className="font-semibold text-slate-800 mb-2">Key Proposal Details</h4>
+                              <div className="grid grid-cols-2 gap-2 text-[11px]">
+                                <div><span className="text-slate-400">Lead Student: </span><span className="font-medium text-slate-700">{row.lead_student_first_name || '—'} {row.lead_student_last_name || ''}</span></div>
+                                <div><span className="text-slate-400">Lead Email: </span><span className="font-medium text-slate-700">{row.lead_student_email || row.submitter_email || '—'}</span></div>
+                                <div><span className="text-slate-400">Mentor: </span><span className="font-medium text-slate-700">{row.mentor_first_name || '—'} {row.mentor_last_name || ''}</span></div>
+                                <div><span className="text-slate-400">Mentor Dept: </span><span className="font-medium text-slate-700">{row.mentor_department || '—'}</span></div>
+                                <div><span className="text-slate-400">Mentor Email: </span><span className="font-medium text-slate-700">{row.mentor_email || '—'}</span></div>
+                                <div><span className="text-slate-400">NC State Affiliated: </span><span className="font-medium text-slate-700">{row.mentor_nc_state_affiliated || '—'}</span></div>
+                                <div className="col-span-2"><span className="text-slate-400">Co-Applicants: </span><span className="font-medium text-slate-700">{row.co_applicants_summary || 'None (Individual)'}</span></div>
+                                <div><span className="text-slate-400">Has Co-Applicants: </span><span className="font-medium text-slate-700">{row.has_co_applicants || '—'}</span></div>
+                                <div><span className="text-slate-400">External Mentor: </span><span className="font-medium text-slate-700">{row.external_mentor_first_name || '—'} {row.external_mentor_last_name || ''} ({row.external_mentor_institution || '—'})</span></div>
                               </div>
-                              <p className="text-slate-600 whitespace-pre-line leading-relaxed">
-                                {row.research_experience_narrative || 'No narrative provided.'}
-                              </p>
                             </div>
 
-                            {/* Readiness & Mentorship Plan */}
                             <div className="bg-white p-3 rounded-lg border border-slate-200 space-y-3">
-                              <div>
-                                <h4 className="font-semibold text-slate-800 mb-1">Student Readiness Evaluation</h4>
-                                <p className="text-slate-600 leading-relaxed">
-                                  {row.student_readiness_evaluation || '—'}
+                              <div className="rounded-lg border border-violet-100 bg-violet-50/50 p-3">
+                                <h4 className="font-semibold text-slate-800 mb-1">Tell us about your research experience with this student. Include the length of time you've been working with this student.</h4>
+                                <p className="text-slate-600 whitespace-pre-line leading-relaxed">
+                                  {row.research_experience_narrative || 'No response provided.'}
                                 </p>
                               </div>
-                              <div>
-                                <h4 className="font-semibold text-slate-800 mb-1">Development Support Plan</h4>
-                                <p className="text-slate-600 leading-relaxed">
-                                  {row.development_support_plan || '—'}
+
+                              <div className="rounded-lg border border-violet-100 bg-violet-50/50 p-3">
+                                <h4 className="font-semibold text-slate-800 mb-1">Describe the experience level or readiness of this student to conduct their proposed research project.</h4>
+                                <p className="text-slate-600 whitespace-pre-line leading-relaxed">
+                                  {row.student_readiness_evaluation || 'No response provided.'}
+                                </p>
+                              </div>
+
+                              <div className="rounded-lg border border-violet-100 bg-violet-50/50 p-3">
+                                <h4 className="font-semibold text-slate-800 mb-1">How will you support the development of this student throughout their research project?</h4>
+                                <p className="text-slate-600 whitespace-pre-line leading-relaxed">
+                                  {row.development_support_plan || 'No response provided.'}
+                                </p>
+                              </div>
+
+                              <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+                                <h4 className="font-semibold text-slate-800 mb-1">Additional Information</h4>
+                                <p className="text-slate-600 whitespace-pre-line leading-relaxed">
+                                  {row.additional_information || 'No additional information provided.'}
                                 </p>
                               </div>
                             </div>
